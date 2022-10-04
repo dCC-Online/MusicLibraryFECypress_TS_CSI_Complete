@@ -19,9 +19,10 @@ const App = (props) => {
   return (
     <div className="main">
       <h1> Music Library </h1>
+      <SongForm getSongs={getSongs} newSong={newSong} />
+      <p/>
       <FilterBar songs={songs} getSongs={getSongs} />
       <MusicTable toggle={toggle} songs={songs} getSongs={getSongs} />
-      <SongForm getSongs={getSongs} newSong={newSong} />
     </div>
   );
 };
