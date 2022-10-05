@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
-import bootstrap from "bootstrap";
+// import { Modal, Button } from "react-bootstrap";
+// import bootstrap from "bootstrap";
 import './EditSong.css'
 import axios from "axios";
 
@@ -13,11 +13,11 @@ const EditSong = ({ handleClose, show, props }) => {
     const [release,setRelease]=useState(props.release_date)
 
 
-    const handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
+    // const handleChange = (event) => {
+    //     this.setState({
+    //         [event.target.name]: event.target.value
+    //     })
+    // }
 
     const handleSubmit = async(event) => {
         event.preventDefault()
@@ -35,12 +35,12 @@ const EditSong = ({ handleClose, show, props }) => {
 
   return (
     <div className={showHideClassName}>
-    {console.log('Props ',props)}
+    {/* {console.log('Props ',props)} */}
       <section className="modal-main">
       <form onSubmit={handleSubmit}>
                 <h1>Edit Song</h1>
                 <label>Title</label>
-                <input name="title" onChange={(e)=>setTitle(e.target.value)} defaultValue={title}/>
+                <input name="title" onChange={(e)=>setTitle(e.target.value)} defaultValue={title} data-test="edit-title" />
                 <label>Artist</label>
                 <input name="artist" onChange={(e)=>setArtist(e.target.value)} defaultValue={props.artist}/>
                 <label>Album</label>
@@ -49,7 +49,7 @@ const EditSong = ({ handleClose, show, props }) => {
                 <input name="genre" onChange={(e)=>setGenre(e.target.value)} defaultValue={props.genre}/>
                 <label>Release Date</label>
                 <input type="date" name="release_date" onChange={(e)=>setRelease(e.target.value)} defaultValue={props.release_date}/>
-                <button type="submit">Update Song</button>
+                <button type="submit" data-testid="submit-btn">Update Song</button>
             </form>
         <button type="button" onClick={handleClose}>
           Close

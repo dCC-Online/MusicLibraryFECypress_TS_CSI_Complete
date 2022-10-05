@@ -3,7 +3,7 @@ import MusicTable from "./MusicTable/MusicTable";
 import SongForm from "./SongForm/SongForm";
 import FilterBar from "./FilterBar/FilterBar";
 import "./App.css";
-import EditSong from "./EditSong";
+// import EditSong from "./EditSong";
 
 const App = (props) => {
   const [songs, setSongs] = useState([]);

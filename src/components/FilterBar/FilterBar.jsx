@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 
 const FilterBar = (props) => {
     const [filterBy,setFilterBy] = useState('')
@@ -12,7 +11,7 @@ const FilterBar = (props) => {
       return song[filterByv];
     });
     let noDupesArr = optionsArray.filter(
-      (att, pos) => optionsArray.indexOf(att) == pos
+      (att, pos) => optionsArray.indexOf(att) === pos
     );
     setFilterBy(filterByv)
     setDupes(noDupesArr)
