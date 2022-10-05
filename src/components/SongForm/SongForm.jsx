@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {useState} from 'react';
 import './SongForm.css'
 import axios from "axios";
 
@@ -27,16 +27,16 @@ const handleSubmit = async(e) =>{
             <form onSubmit={handleSubmit}>
                 <h1>Add a Song</h1>
                 <label>Title</label>
-                <input name="title" onChange={(e)=>setTitle(e.target.value)} />
+                <input name="title" onChange={(e)=>setTitle(e.target.value)} data-test="title" />
                 <label>Artist</label>
-                <input name="artist" onChange={(e)=>setArtist(e.target.value)} />
+                <input name="artist" onChange={(e)=>setArtist(e.target.value)} data-test="artist" />
                 <label>Album</label>
-                <input name="album" onChange={(e)=>setAlbum(e.target.value)} />
+                <input name="album" onChange={(e)=>setAlbum(e.target.value)} data-test="album" />
                 <label>Genre</label>
-                <input name="genre" onChange={(e)=>setGenre(e.target.value)} />
+                <input name="genre" onChange={(e)=>setGenre(e.target.value)} data-test="genre" />
                 <label>Release Date</label>
-                <input type="date" name="release_date" onChange={(e)=>setReleaseDate(e.target.value)} />
-                <button type="submit">Add Song</button>
+                <input type="date" name="release_date" onChange={(e)=>setReleaseDate(e.target.value)} data-test="release_date" />
+                <button type="submit" data-testid="submit btn">Add Song</button>
             </form>
             </div>
          );
