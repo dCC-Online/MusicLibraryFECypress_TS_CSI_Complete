@@ -61,6 +61,7 @@ const MusicTable = (props) => {
             );
           })}
         </table>
+        {/* Proper location for modal display */}
         <EditSong show={show} handleClose={hideModal} props={song}>
           <p>Edit Song</p>
         </EditSong>

@@ -4,7 +4,6 @@ import SongForm from "./SongForm/SongForm";
 import FilterBar from "./FilterBar/FilterBar";
 import "./App.css";
 import axios from "axios";
-// import EditSong from "./EditSong";
 
 const App = (props) => {
   const [songs, setSongs] = useState([]);
