@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-// import { Modal, Button } from "react-bootstrap";
-// import bootstrap from "bootstrap";
 import './EditSong.css'
 import axios from "axios";
 
@@ -12,13 +10,6 @@ const EditSong = ({ handleClose, show, props }) => {
     const [genre,setGenre]=useState(props.genre)
     const [release,setRelease]=useState(props.release_date)
 
-
-    // const handleChange = (event) => {
-    //     this.setState({
-    //         [event.target.name]: event.target.value
-    //     })
-    // }
-
     const handleSubmit = async(event) => {
         event.preventDefault()
         let updatedSong = {
@@ -28,19 +19,18 @@ const EditSong = ({ handleClose, show, props }) => {
             genre:genre,
             release_date:release
         }
-        await axios.put(`http://127.0.0.1:8000/music/${props.id}/`, updatedSong).then(alert('Song updated!'))
+        await axios.patch(`http://127.0.0.1:8000/music/${props.id}/`, updatedSong).then(alert('Song updated!'))
         handleClose()
         window.location.reload();
     }
 
   return (
     <div className={showHideClassName}>
-    {/* {console.log('Props ',props)} */}
       <section className="modal-main">
       <form onSubmit={handleSubmit}>
                 <h1>Edit Song</h1>
                 <label>Title</label>
-                <input name="title" onChange={(e)=>setTitle(e.target.value)} defaultValue={title} data-test="edit-title" />
+                <input name="title" onChange={(e)=>setTitle(e.target.value)} defaultValue={props.title} data-test="edit-title" />
                 <label>Artist</label>
                 <input name="artist" onChange={(e)=>setArtist(e.target.value)} defaultValue={props.artist}/>
                 <label>Album</label>

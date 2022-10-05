@@ -6,8 +6,8 @@ import axios from 'axios'
 
 const MusicTable = (props) => {
   const [show, setShow] = useState(false);
-  const [songs, setSongs] = useState([]);
   const [toggle, setToggle] = useState()
+  const [song, setSong] = useState([])
 
   const showModal = () => {
     setShow(true);
@@ -17,23 +17,22 @@ const MusicTable = (props) => {
     setShow(false);
   };
 
-  useEffect(()=>{
-    getSongs()
-  },[toggle, props.toggle])
+  useEffect(() => {
+    props.getAllSongs()
+  }, [toggle, props.toggle])
 
-  const getSongs = async() =>{
-    let response = await axios.get('http://127.0.0.1:8000/music/')
-    setSongs(response.data)
-    props.getSongs(response.data)
-  } 
+  const handleEdit = (song) => {
+    console.log("Editing song", song);
+    setSong(song);
+    showModal();
+   }
 
-  const deleteSong = async(key) =>{
+  const deleteSong = async (key) => {
     await axios.delete(`http://127.0.0.1:8000/music/${key}/`)
     setToggle(!toggle)
   }
 
-  console.log(props);
-  if (songs !== [])
+  if (props.songs !== [])
     return (
       <div>
         <table className="center">
@@ -55,16 +54,16 @@ const MusicTable = (props) => {
                 <td><button onClick={() => deleteSong(song.id)} type="submit">
                   Delete Song
                 </button></td>
-                <EditSong show={show} handleClose={hideModal} props={song}>
-                  <p>Edit Song</p>
-                </EditSong>
-                <td><button type="button" onClick={showModal}>
+                <td><button type="button" onClick={() => handleEdit(song)}>
                   Edit Song
                 </button></td>
               </tr>
             );
           })}
         </table>
+        <EditSong show={show} handleClose={hideModal} props={song}>
+          <p>Edit Song</p>
+        </EditSong>
       </div>
     );
   else {
