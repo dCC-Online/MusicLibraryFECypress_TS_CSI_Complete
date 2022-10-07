@@ -5,20 +5,7 @@ describe('Song Form Tests', () => {
   //   causing sporadic results. 
 
   it('Add song: The Happy Archer', () => {
-    cy.visit('http://localhost:3000')
-    cy.get('[data-test="title"]')
-      .type("The Happy Archer")
-    cy.get('[data-test="artist"]')
-      .type("Billy McLaughlin")
-    cy.get('[data-test="album"]')
-      .type("Fingerdance")
-    cy.get('[data-test="genre"]')
-      .type("Instrumental Guitar")
-    cy.get('[data-test="release_date"]')
-      .type("1996-01-01")
-
-    cy.get('[data-testid="submit btn"]')
-      .click()
+    cy.addSong("The Happy Archer")
   })
 
   it('Filters for: The Happy Archer', () => {
@@ -30,14 +17,27 @@ describe('Song Form Tests', () => {
       .contains("The Happy Archer")
   })
 
-  it('Delete song: The Happy Archer', () => {
+  it('Edit song: The Happy Archer', () => {
     cy.visit('http://localhost:3000')
-
     cy.contains('The Happy Archer')
       .parents('tr')
       .find('button')
-      .contains('Delete')
+      .contains('Edit')
       .click()
+      .parents('tr')
+      .get('.modal-main')
+      .find('form').within(() => {
+        cy.get('[data-test="edit-title"]')
+          .clear()
+          .type("The Happy Archer II")
+        cy.get('[data-testid="submit-btn"]')
+          .click()
+      })
   })
+
+  it('Delete song: The Happy Archer', () => {
+    cy.deleteSong("The Happy Archer II")
+  })
+
 
 })

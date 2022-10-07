@@ -23,3 +23,30 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('addSong', (title) => {
+    cy.visit('http://localhost:3000')
+    cy.get('[data-test="title"]')
+        .type(title)
+    cy.get('[data-test="artist"]')
+        .type("Billy McLaughlin")
+    cy.get('[data-test="album"]')
+        .type("Fingerdance")
+    cy.get('[data-test="genre"]')
+        .type("Instrumental Guitar")
+    cy.get('[data-test="release_date"]')
+        .type("1996-01-01")
+
+    cy.get('[data-testid="submit btn"]')
+        .click()
+})
+
+Cypress.Commands.add('deleteSong', (title) => {
+    cy.visit('http://localhost:3000')
+
+    cy.contains(title)
+        .parents('tr')
+        .find('button')
+        .contains('Delete')
+        .click()
+})

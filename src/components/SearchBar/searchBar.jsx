@@ -8,6 +8,7 @@ const SearchBar = (props) => {
             type="text"
             placeholder="Search"
             onChange={(event) => props.filterSongs(event)}
+            data-test="search-field"
         />
         </div>
     );
